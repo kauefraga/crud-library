@@ -69,12 +69,21 @@ source: https://hub.docker.com/r/bitnami/postgresql
 
 ## 🛣 Routes
 
-```
-GET /v1/books -> Read and return books
-GET /v1/books/:id -> Search for a specific book and return it
-POST /v1/books -> Create a new book
-PUT /v1/books/:id -> Update a specific book
-DELETE /v1/books/:id -> Delete a specific book
+```bash
+# Read and return books
+GET /v1/books
+
+# Search for a specific book and return it
+GET /v1/books/:id
+
+# Create a new book
+POST /v1/books
+
+# Update a specific book
+PUT /v1/books/:id
+
+# Delete a specific book
+DELETE /v1/books/:id
 ```
 
 ## 📝 License
