@@ -23,6 +23,19 @@
 
 <h4 align="center">📚 A restful API that create, read, update and delete book stuff 📚</h4>
 
+## ✨ Features
+
+- **Architecture**: Monolithic
+- **Lint**: Eslint (config-airbnb-typescript)
+- **Code good practices**
+  - [ ] Unit tests
+  - [ ] Repositories pattern
+- **API production-quality**
+  - [ ] Versioning (`/v1...`)
+  - [ ] Status endpoint
+  - [ ] Request limitations
+  - [ ] Standard response
+
 ## ⬇️ How to develop and contribute
 
 ```bash
