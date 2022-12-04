@@ -31,10 +31,10 @@
   - [ ] Unit tests
   - [ ] Repositories pattern
 - **API production-quality**
-  - [ ] Versioning (`/v1...`)
-  - [ ] Status endpoint
-  - [ ] Request limitations
-  - [ ] Standard response
+  - [x] Versioning (`/v1...`)
+  - [x] Status endpoint
+  - [x] Request limitations
+  - [x] Standard response
 
 ## ⬇️ How to develop and contribute
 
@@ -44,6 +44,9 @@ cd crud-library
 
 npm install
 npm run dev
+
+# If you want to run tests
+npm run test
 ```
 Or downloading with yarn? `yarn && yarn dev`
 <br/>
@@ -59,17 +62,23 @@ source: https://hub.docker.com/r/bitnami/postgresql
 
 ## 💻 Technologies
 
+- 🔥 [CORS](https://npm.im/cors) - Required when we need to control who can access our endpoints
 - 🐳 [Docker](https://www.docker.com) - Use virtualization/containerize to turn your "work on my machine" into "our machine"
-<!-- - 🤫 [Dotenv](https://npmjs.com/package/dotenv) - We must hide our secret keys, with dotenv we can load env variables into `process.env` more easily -->
-- 💄 [Eslint](https://eslint.org) - Set code rules and help keep it
-  - https://www.npmjs.com/package/eslint-config-airbnb-base
-  - https://www.npmjs.com/package/eslint-config-airbnb-typescript
-- 🐘 [Postgres](https://www.postgresql.org) - PostgreSQL is a relational database.
-- 🧑‍💻 Developed on [Typescript](https://typescriptlang.org) + [TS-Node-Dev](https://npmjs.com/package/ts-node-dev) - Improve dev experience by adding type safety
+- 🤫 [Dotenv](https://npm.im/dotenv) - We must hide our secret keys, with dotenv we can load env variables into `process.env` more easily
+- 💄 [Eslint](https://eslint.org) - Set code rules and help to keep it
+  - https://www.npm.im/eslint-config-airbnb-base
+  - https://www.npm.im/eslint-config-airbnb-typescript
+- 🔮 [Express](https://expressjs.com) - "Fast, minimalist web framework for Nodejs..."
+- 🐘 [Postgres](https://npm.im/postgres) - PostgreSQL is a relational database. It is the driver implementation for nodejs
+- ⚗️ [Vitest](https://vitest.dev) - Test runner that implements Jest but with its own ESbuider (out of box typescript, esmodules...)
+- 🧑‍💻 Developed on [Typescript](https://typescriptlang.org) + [TS-Node-Dev](https://npm.im/ts-node-dev) - Improve dev experience by adding type safety
 
 ## 🛣 Routes
 
 ```bash
+# Status endpoint
+GET /v1/status
+
 # Read and return books
 GET /v1/books
 
