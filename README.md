@@ -28,8 +28,9 @@
 - **Architecture**: Monolithic
 - **Lint**: Eslint (config-airbnb-typescript)
 - **Code good practices**
+  - [x] Try to follow the SOLID, KISS...
   - [ ] Unit tests
-  - [ ] Repositories pattern
+  - [x] Repositories pattern
 - **API production-quality**
   - [x] Versioning (`/v1...`)
   - [x] Status endpoint
@@ -53,6 +54,8 @@ Or downloading with yarn? `yarn && yarn dev`
 Sincerely, i prefer pnpm so: `pnpm i && pnpm dev`
 
 ## 🐳 How to set up Postgres
+
+First take a look at these files: [.env.example](https://github.com/kauefraga/crud-library/blob/main/.env.example) and [docker-compose.yaml](https://github.com/kauefraga/crud-library/blob/main/docker-compose.yaml)
 ```sh
 # if you get an error try sudo mode
 docker run --name postgresql bitnami/postgresql:latest
