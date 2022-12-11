@@ -1,8 +1,6 @@
-export interface ApiResponse {
+export interface ApiResponse<T = unknown> {
   success: boolean;
-  data: {
-    [key: string]: any;
-    error?: Error;
-    now?: Date;
-  }
+  data?: T;
+  error?: Error;
+  now?: Date;
 }
