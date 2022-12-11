@@ -25,7 +25,15 @@ export class Book {
     return this.props.title;
   }
 
+  set title(newTitle: string) {
+    this.props.title = newTitle;
+  }
+
   get description() {
     return this.props.description;
+  }
+
+  set description(newDescription: string) {
+    this.props.description = newDescription;
   }
 }
