@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "NODE_ENV=development tsnd --respawn --transpile-only src/http/server.ts",
     "migrations": "NODE_ENV=development tsnd --transpile-only src/infra/migrations.ts",
-    "test": "vitest"
+    "test": "NODE_ENV=development vitest"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
