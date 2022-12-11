@@ -29,7 +29,7 @@
 - **Lint**: Eslint (config-airbnb-typescript)
 - **Code good practices**
   - [x] Try to follow the SOLID, KISS...
-  - [ ] Unit tests
+  - [x] Unit tests ([core](https://github.com/kauefraga/crud-library/blob/main/src/core))
   - [x] Repositories pattern
 - **API production-quality**
   - [x] Versioning (`/v1...`)
