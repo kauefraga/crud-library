@@ -11,9 +11,9 @@ export interface BooksRepository {
   findMany(): Promise<Book[]>;
   findById(bookId: string): Promise<Book>;
   findByTitle(bookTitle: string): Promise<Book>;
-  updateById(
-    bookId: string,
+  updateByTitle(
+    bookTitle: string,
     newBook: Book
   ): Promise<BookDiff>;
-  deleteById(bookId: string): Promise<void>;
+  deleteByTitle(bookTitle: string): Promise<void>;
 }

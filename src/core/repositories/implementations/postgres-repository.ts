@@ -46,28 +46,30 @@ class PostgresRepository implements BooksRepository {
     return book;
   }
 
-  async updateById(bookId: string, newBook: Book): Promise<BookDiff> {
-    const book = await this.findById(bookId);
+  async updateByTitle(bookTitle: string, newBook: Book): Promise<BookDiff> {
+    const book = await this.findByTitle(bookTitle);
+
+    if (!book.id) throw new Error('Fatal error! Book identifier does not exists.');
 
     await sql`
       UPDATE books
       SET title = ${newBook.title}, description = ${newBook.description}
-      WHERE id = ${bookId}
+      WHERE title = ${bookTitle}
     `;
 
     return {
-      id: bookId,
+      id: book.id,
       before: book,
       after: newBook,
     };
   }
 
-  async deleteById(bookId: string): Promise<void> {
-    const book = await this.findById(bookId);
+  async deleteByTitle(bookTitle: string): Promise<void> {
+    const book = await this.findByTitle(bookTitle);
 
     if (book) {
       await sql`
-        DELETE FROM books WHERE id = ${bookId}
+        DELETE FROM books WHERE title = ${bookTitle}
       `;
     }
   }
