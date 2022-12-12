@@ -1,42 +1,41 @@
 import { Request, Response } from 'express';
 import { ApiResponse } from '../../types/api-response';
-import { sql } from '../../../infra/postgres';
-import { Book } from '../../../core/entities/book';
-
-interface CreateBookRequest {
-  title: string
-  description: string
-}
+import { postgresRepository } from '../../../core/repositories/implementations/postgres-repository';
+import {
+  CreateBookUseCase,
+  CreateBookRequest,
+  CreateBookResponse,
+} from '../../../core/usecases/create-book-use-case/create-book';
 
 export async function CreateBookController(
   request: Request<unknown, unknown, CreateBookRequest>,
-  response: Response<ApiResponse>,
+  response: Response<ApiResponse<CreateBookResponse>>,
 ) {
   const { title, description } = request.body;
 
-  const book = new Book({ title, description });
+  const createBookUseCase = new CreateBookUseCase(
+    postgresRepository,
+  );
 
-  if (!book.id) throw new Error('The book has not id specified');
+  try {
+    const book = await createBookUseCase.execute({
+      title,
+      description,
+    });
 
-  await sql`
-    INSERT INTO books (
-      id, title, description
-    ) VALUES (
-      ${book.id},
-      ${book.title},
-      ${book.description}
-    )
-  `;
-
-  return response.status(201).json({
-    success: true,
-    data: {
-      book: {
-        id: book.id,
-        title: book.title,
-        description: book.description,
+    return response.status(201).json({
+      success: true,
+      data: book,
+      now: new Date(),
+    });
+  } catch (err: any) {
+    return response.status(400).json({
+      success: false,
+      error: {
+        name: 'Something went wrong',
+        message: err.message,
       },
       now: new Date(),
-    },
-  });
+    });
+  }
 }
