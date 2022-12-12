@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ApiResponse } from '../../types/api-response';
-import { sql } from '../../../infra/postgres';
+import { FindBookByIdUseCase } from '../../../core/usecases/find-book-use-case/find-by-id';
+import { postgresRepository } from '../../../core/repositories/implementations/postgres-repository';
 
 export async function GetBookByIdController(
   request: Request<{ bookId: string }>,
@@ -8,28 +9,26 @@ export async function GetBookByIdController(
 ) {
   const { bookId } = request.params;
 
-  const book = await sql`
-    SELECT * FROM books WHERE id = ${bookId}
-  `;
+  const findBookByIdUseCase = new FindBookByIdUseCase(
+    postgresRepository,
+  );
 
-  if (!book.length) {
-    response.status(400).json({
+  try {
+    const book = await findBookByIdUseCase.execute(bookId);
+
+    return response.status(200).json({
+      success: true,
+      data: book,
+      now: new Date(),
+    });
+  } catch (err: any) {
+    return response.status(400).json({
       success: false,
-      data: {
-        error: {
-          name: 'The requested book does not exists',
-          message: 'The query does not found the requested book',
-        },
-        now: new Date(),
+      error: {
+        name: 'Something went wrong',
+        message: err.message,
       },
+      now: new Date(),
     });
   }
-
-  return response.status(200).json({
-    success: true,
-    data: {
-      book: book[0],
-      now: new Date(),
-    },
-  });
 }
