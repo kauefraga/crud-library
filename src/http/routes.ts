@@ -5,7 +5,7 @@ import { GetBooksController } from './controllers/books/get';
 import { GetBookByIdController } from './controllers/books/get-by-id';
 import { CreateBookController } from './controllers/books/create';
 import { UpdateBookByIdController } from './controllers/books/update-by-id';
-import { DeleteBookByIdController } from './controllers/books/delete-by-id';
+import { DeleteBookByTitleController } from './controllers/books/delete-by-title';
 
 const router = Router();
 
@@ -21,6 +21,6 @@ router.post('/v1/books', CreateBookController);
 
 router.put('/v1/books/:bookId', UpdateBookByIdController);
 
-router.delete('/v1/books/:bookId', DeleteBookByIdController);
+router.delete('/v1/books', DeleteBookByTitleController);
 
 export { router };
